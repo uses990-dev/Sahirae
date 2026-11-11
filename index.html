@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="catalog.js" defer></script>
     <script src="app.js" defer></script>
   </head>
   <body>
@@ -62,11 +63,11 @@
           </div>
           <div class="table-wrap">
             <table>
-              <thead><tr><th scope="col">Flower</th><th scope="col">Mini</th><th scope="col">Medium Classic</th><th scope="col">Large Full</th><th scope="col">Luxe</th><th scope="col">Premium Statement</th><th scope="col">Grand</th></tr></thead>
+              <thead><tr><th scope="col">Flower</th><th scope="col">Mini<br><small>5 flowers</small></th><th scope="col">Classic<br><small>10 flowers</small></th><th scope="col">Full<br><small>20 flowers</small></th><th scope="col">Grand<br><small>30 flowers</small></th><th scope="col">Luxe<br><small>50 flowers</small></th><th scope="col">Premium Statement<br><small>100 flowers</small></th></tr></thead>
               <tbody id="price-rows"></tbody>
             </table>
           </div>
-          <p class="price-note"><span aria-hidden="true">✳</span> Prices are transcribed from the handwritten catalog. Bouquet counts and details can be confirmed when you order.</p>
+          <p class="price-note"><span aria-hidden="true">✳</span> Catalog prices include wrapping. Each cell shows the standard price and the glitter price below. Soleil mini sunflowers have their own prices; glitter pricing is not listed.</p>
         </div>
       </section>
 
@@ -89,15 +90,36 @@
 
       <section class="order-section" id="order">
         <div class="section-wrap order-inner">
-          <div class="order-copy"><p class="eyebrow">MAKE IT YOURS</p><h2>Your flowers,<br><em>your meaning.</em></h2><p>Choose a flower and bouquet size to make an order note. Copy it and send it through your preferred messaging app so we can confirm colors and details.</p><div class="order-aside"><span>✿</span><p>Colors shown are popular ideas, not a live stock list. We’ll confirm what’s available with you.</p></div></div>
+          <div class="order-copy"><p class="eyebrow">MAKE IT YOURS</p><h2>Your flowers,<br><em>your meaning.</em></h2><p>Choose your bouquet, add your delivery address, and review your order before sending it to us on WhatsApp at +91 7039009392.</p><div class="order-aside"><span>✿</span><p>Colors shown are popular ideas, not a live stock list. We’ll confirm what’s available with you.</p></div></div>
           <form class="order-card" id="order-form">
-            <p class="order-card-label">YOUR BOUQUET NOTE <span>✳</span></p>
-            <label for="order-flower">Choose a flower</label><select id="order-flower" name="flower"></select>
-            <label for="order-size">Choose a size</label><select id="order-size" name="size"></select>
-            <label for="order-color">Color idea <span class="optional">(optional)</span></label><input id="order-color" name="color" placeholder="e.g. soft pink, ivory, sunshine yellow">
-            <div class="order-total"><span>Catalog price</span><strong id="order-price">₹299</strong></div>
-            <button class="button button-dark copy-button" type="submit">Copy my order note <span aria-hidden="true">↗</span></button>
-            <p class="copy-status" id="copy-status" role="status" aria-live="polite">No payment is taken here. We’ll confirm your order details directly.</p>
+            <p class="order-card-label">YOUR WHATSAPP ORDER <span>✳</span></p>
+            <noscript>Please enable JavaScript to build your order, or <a href="https://wa.me/917039009392">contact us on WhatsApp</a>.</noscript>
+            <label for="order-flower">Choose a flower</label><select id="order-flower" name="flower" required></select>
+            <label for="order-size">Choose a size</label><select id="order-size" name="size" required></select>
+            <label for="order-finish">Finish</label><select id="order-finish" name="finish"><option value="standard">Standard</option><option value="glitter">With glitter</option></select>
+            <p class="field-help" id="finish-help">Bouquet prices include wrapping.</p>
+            <label for="order-color">Choose a color</label><select id="order-color" name="color" required></select>
+            <div class="order-total"><span>Catalog price · wrapping included</span><strong id="order-price" aria-live="polite">—</strong></div>
+            <fieldset class="delivery-fields">
+              <legend>Delivery details</legend>
+              <label for="customer-name">Customer name</label><input id="customer-name" name="customerName" autocomplete="name" maxlength="100" required>
+              <label for="delivery-address">Full delivery address</label><textarea id="delivery-address" name="address" autocomplete="street-address" rows="3" maxlength="600" placeholder="House / flat, building, street, area, city and PIN code" required></textarea>
+              <label for="delivery-notes">Landmark or delivery notes <span class="optional">(optional)</span></label><input id="delivery-notes" name="notes" maxlength="250" placeholder="e.g. opposite the library">
+              <div class="location-actions"><button class="button button-outline" id="use-location" type="button">Use my current location</button><button class="text-button" id="remove-location" type="button" hidden>Remove location</button></div>
+              <p class="field-help">Optional: your browser will ask permission. Only use this if you are at the delivery address. A GPS pin does not replace your full address. Nothing is saved by this site; your details are passed to WhatsApp only when you open the order link.</p>
+              <p id="location-status" class="field-help" role="status">No location attached. You can order using your typed address.</p>
+              <a id="location-map" target="_blank" rel="noopener noreferrer" hidden>Check this pin on Google Maps ↗</a>
+              <label class="checkbox-label" for="confirm-address"><input id="confirm-address" type="checkbox" required><span>I confirm the delivery address and any attached map pin are correct.</span></label>
+            </fieldset>
+            <button class="button button-dark copy-button" type="submit">Review WhatsApp order <span aria-hidden="true">↗</span></button>
+            <p class="copy-status" id="order-status" role="status">No payment is taken here. We’ll confirm availability, delivery charges and the final total on WhatsApp.</p>
+            <section id="order-review" class="order-review" aria-labelledby="review-title" hidden>
+              <h3 id="review-title" tabindex="-1">Check your order</h3>
+              <label for="order-message">Message to Sahiraé by Sana</label><textarea id="order-message" readonly rows="12"></textarea>
+              <a id="whatsapp-order" class="button button-dark" target="_blank" rel="noopener noreferrer">Open WhatsApp ↗</a>
+              <button id="copy-order" type="button" class="text-button">Copy order message instead</button>
+              <p class="field-help">Opening WhatsApp prepares a message—it does not place the order. Tap Send in WhatsApp, then wait for our confirmation.</p>
+            </section>
           </form>
         </div>
       </section>
@@ -108,7 +130,8 @@
         <div class="contact-copy">
           <p class="eyebrow">LET’S KEEP IN TOUCH</p>
           <h2>Made to be<br><em>shared.</em></h2>
-          <p>Questions about a flower or bouquet? Call to check colors, availability, and gift details.</p>
+          <p>Questions about a flower or bouquet? Message us on WhatsApp or call to check colors, availability, and gift details.</p>
+          <a class="button button-dark" href="https://wa.me/917039009392" target="_blank" rel="noopener noreferrer">Chat on WhatsApp ↗</a>
           <a class="contact-phone" href="tel:7039009392"><span>Call us</span><strong>7039009392 <span aria-hidden="true">↗</span></strong></a>
         </div>
         <a class="instagram-card" href="images/instagram-qr.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open the Instagram QR code in a new tab to scan">

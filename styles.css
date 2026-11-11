@@ -7,3 +7,29 @@
 .gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:none}.gallery-card{min-width:0}.gallery-card>img,.gallery-card-pair img{width:100%;height:245px;object-fit:contain;background:#f0ece5}.gallery-card-pair{display:grid;grid-template-columns:1fr 1fr;gap:6px}.gallery-card figcaption{min-height:54px}.gallery-card figcaption strong{font:600 14px var(--serif)}
 @media(max-width:850px){.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery-card>img,.gallery-card-pair img{height:240px}}
 @media(max-width:600px){.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery-card>img,.gallery-card-pair img{height:170px}.gallery-card-pair{gap:3px}.gallery-card figcaption{gap:6px;padding:9px 3px}.gallery-card figcaption strong{font-size:12px}}
+
+/* Order details remain readable and usable on mobile. */
+[hidden]{display:none!important}
+.table-wrap td small{display:block;font-size:10px;font-weight:400;color:var(--muted);white-space:nowrap;margin-top:5px}
+.table-wrap tbody th{text-align:left;font:600 14px var(--serif);padding:16px;border-bottom:1px solid var(--line)}
+.flower-unit{font-size:11px;color:var(--rose-dark)}
+.order-inner{align-items:start}
+.order-card label{font-size:13px}
+.order-card select,.order-card input,.order-card textarea{font:16px var(--sans)}
+.order-card textarea{display:block;width:100%;padding:11px;border:1px solid #dedbd1;background:#fffefa;color:var(--ink);resize:vertical;line-height:1.5}
+.order-card .field-help,.order-card .copy-status{font-size:12px;line-height:1.6}
+.field-help{color:#65675e;margin:8px 0}
+.delivery-fields{border:0;border-top:1px solid var(--line);padding:18px 0;margin:0 0 8px;min-width:0}
+.delivery-fields legend{font:600 21px var(--serif);padding-right:10px}
+.location-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:18px}
+.location-actions .button{min-height:44px;padding:10px 14px}
+.text-button{background:none;border:0;text-decoration:underline;color:var(--sage-dark);font:inherit;font-size:13px;cursor:pointer;padding:10px 0;min-height:44px}
+.order-card .checkbox-label{display:flex;gap:10px;align-items:flex-start;font-weight:400;line-height:1.5;margin:18px 0 6px}
+.order-card input[type=checkbox]{width:20px;height:20px;flex-shrink:0;margin:0;accent-color:var(--sage-dark)}
+#location-map{font-size:13px;text-decoration:underline;color:var(--sage-dark)}
+.order-review{border-top:1px solid var(--line);padding-top:18px;margin-top:22px}
+.order-review h3{font:600 25px var(--serif);margin:0}
+.order-review .button{display:flex;margin-top:16px;justify-content:center}
+.order-card :focus-visible{outline:2px solid var(--sage-dark);outline-offset:3px}
+.order-card button:disabled{opacity:.65;cursor:wait}
+@media(min-width:851px){.order-inner{grid-template-columns:1fr 1.15fr;gap:60px}}
