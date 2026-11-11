@@ -20,6 +20,12 @@
   const mockLocation = (getCurrentPosition) => Object.defineProperty(navigator, 'geolocation', { configurable: true, value: { getCurrentPosition } });
   try {
     assert(document.querySelectorAll('#price-rows tr').length === 9, 'Nine catalog rows rendered');
+    assert($('#loading-status').hidden, 'Loading warning clears only when app initializes');
+    for (const [index, button] of [...document.querySelectorAll('.choose-flower')].entries()) {
+      button.click();
+      assert($('#order-flower').value === flowers[index].name, `Card selects ${flowers[index].name}`);
+      assert(document.activeElement === $('#order-flower'), 'Card focuses the flower selector');
+    }
     for (const flower of flowers) {
       set('#order-flower', flower.name);
       for (const [index, price] of flower.prices.entries()) {
@@ -69,6 +75,7 @@
       mockLocation((success, error) => error({ code }));
       $('#use-location').click();
       assert($('#location-status').textContent.includes(text) && !$('#use-location').disabled, `Geolocation error ${code} has actionable fallback`);
+      if (code === 1) assert($('#location-status').textContent.includes('Chrome') && $('#location-status').textContent.includes('allow Location'), 'Chrome permission recovery guidance');
       confirm(); submit();
       assert(!$('#order-review').hidden && !$('#order-message').value.includes('maps?q='), `Manual ordering works after location error ${code}`);
     }
@@ -81,11 +88,12 @@
     let pending;
     mockLocation((success) => { pending = success; });
     $('#use-location').click();
+    assert($('#location-status').textContent.includes('Finding your location') && $('#use-location').disabled, 'Location tap immediately reports progress');
     $('#remove-location').click();
     pending({ coords: { latitude: 0, longitude: 0, accuracy: 12 } });
     assert($('#location-map').hidden && $('#remove-location').hidden, 'Cancelled request cannot reattach a pin');
     mockLocation((success, error, options) => {
-      assert(options.timeout === 15000 && options.maximumAge === 0, 'Fresh location with bounded timeout');
+      assert(options.timeout === 20000 && options.maximumAge === 0 && options.enableHighAccuracy === false, 'Fresh location with bounded timeout and no GPS-only preference');
       success({ coords: { latitude: 0, longitude: 0, accuracy: 12.5 } });
     });
     $('#use-location').click();
