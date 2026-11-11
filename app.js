@@ -23,6 +23,18 @@ for (const flower of flowers) {
   card.className = 'flower-card';
   const unit = `${formatPrice(flower.unitPrice)} each${flower.unitGlitterPrice ? ` · ${formatPrice(flower.unitGlitterPrice)} with glitter` : ''}`;
   card.innerHTML = `<div class="flower-top"><span class="flower-icon" aria-hidden="true">${flower.symbol}</span><span class="flower-from">Bouquets from<strong>${formatPrice(flower.prices[0])}</strong></span></div><h3>${flower.name}</h3><div class="flower-meaning">${flower.meaning}</div><p class="flower-recipient">${flower.recipients}</p><p class="flower-unit">${unit}</p><div class="flower-colors" aria-label="Catalog colors">${flower.colors.map((color) => `<span class="color-chip">${color}</span>`).join('')}</div>`;
+  const chooseButton = document.createElement('button');
+  chooseButton.type = 'button';
+  chooseButton.className = 'choose-flower';
+  chooseButton.textContent = 'Choose this flower ↗';
+  chooseButton.setAttribute('aria-label', `Choose ${flower.name}`);
+  chooseButton.addEventListener('click', () => {
+    flowerSelect.value = flower.name;
+    updateFlower();
+    flowerSelect.focus({ preventScroll: true });
+    form.scrollIntoView({ behavior: 'auto', block: 'start' });
+  });
+  card.append(chooseButton);
   flowerGrid.append(card);
   const row = document.createElement('tr');
   row.innerHTML = `<th scope="row">${flower.name}</th>${flower.prices.map((price, index) => `<td>${formatPrice(price)}<small>${flower.glitterPrices ? `${formatPrice(flower.glitterPrices[index])} with glitter` : 'Glitter not listed'}</small></td>`).join('')}`;
@@ -87,12 +99,12 @@ locationButton.addEventListener('click', () => {
   const request = ++locationRequest;
   clearPin();
   if (!window.isSecureContext || !navigator.geolocation) {
-    locationStatus.textContent = 'Location is unavailable in this browser. Please enter your full delivery address instead.';
+    locationStatus.textContent = 'Location is unavailable here. Open this website directly in Chrome or Safari over HTTPS, or enter your full delivery address instead.';
     return;
   }
   locationButton.disabled = true;
   removeLocation.hidden = false;
-  locationStatus.textContent = 'Waiting for location permission. You can cancel by choosing Remove location.';
+  locationStatus.textContent = 'Finding your location… Allow location in the browser prompt. This can take up to 20 seconds; choose Remove location to cancel.';
   navigator.geolocation.getCurrentPosition((position) => {
     if (request !== locationRequest) return;
     const { latitude, longitude, accuracy } = position.coords;
@@ -113,8 +125,11 @@ locationButton.addEventListener('click', () => {
     locationButton.disabled = false;
     removeLocation.hidden = true;
     const reason = error.code === 1 ? 'Location permission was denied.' : error.code === 3 ? 'Location request timed out.' : 'Your location could not be found.';
-    locationStatus.textContent = `${reason} You can still order using your typed address.`;
-  }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 });
+    const help = error.code === 1
+      ? 'In Chrome, open the site controls beside the address bar, allow Location, and check that your phone’s Location setting is on. Then try again.'
+      : 'Check that your device’s Location setting is on, then try again. You can also open this page directly in Chrome or Safari.';
+    locationStatus.textContent = `${reason} ${help} You can still order using your typed address.`;
+  }, { enableHighAccuracy: false, timeout: 20000, maximumAge: 0 });
 });
 
 form.addEventListener('submit', (event) => {
@@ -163,3 +178,5 @@ document.querySelector('#copy-order').addEventListener('click', async () => {
   }
 });
 updateFlower();
+
+document.querySelector('#loading-status').hidden = true;

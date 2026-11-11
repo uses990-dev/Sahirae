@@ -60,3 +60,9 @@ The browser checks use synthetic customer details and mocked location/clipboard 
 ## Public hosting
 
 The public storefront is at `https://uses990-dev.github.io/Sahirae/`. GitHub Pages can serve these static files directly from `main` at the repository root (the current hosting configuration). The repository also includes an Actions deployment workflow; to use that instead, select **Build and deployment → Source: GitHub Actions** in Pages settings. Both paths include `catalog.js` alongside `app.js`.
+
+## Browser cache compatibility
+
+`index.html` versions `catalog.js`, `app.js` and `styles.css` with the first 12 characters of each file’s SHA-256 hash. After editing one of those files, update its `?v=` value in the HTML. `npm test` checks the hashes so a release cannot accidentally reuse an old browser cache entry. This prevents the pre-catalog app script from conflicting with the new catalog declarations. A loading notice provides a refresh link and direct WhatsApp fallback if scripts fail to initialize.
+
+Flower cards have explicit selection buttons. Location requests prefer an available network-based fix rather than requiring high accuracy; the customer must still review the pin and accuracy. Chrome users who deny location get instructions to restore permission. The site cannot override device permissions or guarantee a GPS fix.
