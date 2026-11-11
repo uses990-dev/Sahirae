@@ -16,6 +16,8 @@ This starts a static preview at `http://localhost:3000` (Python 3 is required; t
 - `styles.css` — responsive layout and visual styles
 - `app.js` — flower data, price table, and order-note interaction
 - `images/` — product photos used on the page
+
+The keepsake gallery shows seven product styles from the supplied photos, grouping the two bouquet-keychain images together. The contact section uses the supplied logo, a click-to-call number, and an Instagram QR image.
 - `.github/workflows/deploy-pages.yml` — GitHub Pages deployment workflow
 
 ## Bouquet price list
