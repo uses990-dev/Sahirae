@@ -28,7 +28,7 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir -p dist/images
-          cp index.html styles.css app.js dist/
+          cp index.html styles.css catalog.js app.js dist/
           cp images/* dist/images/
       - name: Upload site files
         uses: actions/upload-pages-artifact@v3
