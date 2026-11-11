@@ -158,7 +158,7 @@ form.addEventListener('submit', (event) => {
     '',
     'Please confirm availability, delivery charges and the final total. This is an order request, not a payment or confirmed order.'
   ].join('\n');
-  whatsappLink.href = `https://wa.me/917039009392?text=${encodeURIComponent(message.value)}`;
+  whatsappLink.href = `https://wa.me/917039006392?text=${encodeURIComponent(message.value)}`;
   review.hidden = false;
   status.textContent = 'Your order is ready to review. Nothing has been sent yet.';
   document.querySelector('#review-title').focus();
@@ -168,12 +168,12 @@ document.querySelector('#copy-order').addEventListener('click', async () => {
   const note = message.value;
   try {
     await navigator.clipboard.writeText(note);
-    if (message.value === note) status.textContent = 'Order message copied. Paste it into a chat with +91 7039009392.';
+    if (message.value === note) status.textContent = 'Order message copied. Paste it into a chat with +91 70390 06392.';
   } catch {
     if (message.value === note) {
       message.focus();
       message.select();
-      status.textContent = 'Automatic copying is unavailable. Select and copy the message above, then send it to +91 7039009392.';
+      status.textContent = 'Automatic copying is unavailable. Select and copy the message above, then send it to +91 70390 06392.';
     }
   }
 });

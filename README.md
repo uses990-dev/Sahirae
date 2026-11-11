@@ -42,7 +42,7 @@ Each cell lists the standard price followed by the glitter price where available
 
 ## WhatsApp ordering and delivery address
 
-Customers can send an order to **+91 7039009392** on WhatsApp. Include a typed delivery address; sharing a location pin is optional and should only happen when the customer explicitly chooses to share it and grants location permission. A location pin does not replace the typed address. The customer should review and confirm the order and address before sending. The site does not automatically geocode or verify addresses or locations.
+Customers can send an order to **+91 70390 06392** on WhatsApp. Include a typed delivery address; sharing a location pin is optional and should only happen when the customer explicitly chooses to share it and grants location permission. A location pin does not replace the typed address. The customer should review and confirm the order and address before sending. The site does not automatically geocode or verify addresses or locations.
 
 ## Verification
 

@@ -61,7 +61,10 @@
     submit();
     let url = new URL($('#whatsapp-order').href);
     let note = url.searchParams.get('text');
-    assert(url.origin === 'https://wa.me' && url.pathname === '/917039009392', 'Correct WhatsApp recipient');
+    assert(url.origin === 'https://wa.me' && url.pathname === '/917039006392', 'Correct WhatsApp recipient');
+    for (const link of document.querySelectorAll('a[href^="https://wa.me/"]')) {
+      assert(new URL(link.href).pathname === '/917039006392', 'Every WhatsApp link uses the corrected recipient');
+    }
     assert(note === $('#order-message').value, 'Unicode, newlines and special characters survive URL encoding');
     assert(note.includes('Lily — Premium Statement (100 flowers)') && note.includes('₹16,249') && note.includes('With glitter'), 'Correct bouquet and glitter total in message');
     assert(note.includes('DEMO ONLY') && note.includes('Test landmark & gate #2') && !note.includes('maps?q='), 'Manual address order without GPS');
