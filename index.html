@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f8f3ec">
+    <meta name="description" content="Thoughtful handmade flower bouquets and bouquet keychains from Sahiraé by Sana. Find a flower for every feeling and occasion.">
+    <title>Sahiraé by Sana — flowers for every feeling</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#home" aria-label="Sahiraé by Sana home"><span class="wordmark-flower">✿</span><span>Sahiraé <small>by Sana</small></span></a>
+      <nav aria-label="Main navigation">
+        <a href="#flowers">Flowers</a>
+        <a href="#prices">Price guide</a>
+        <a href="#keepsakes">Keepsakes</a>
+      </nav>
+      <a class="header-cta" href="#order">Find your bouquet <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero section-wrap" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> LITTLE FLOWERS, BIG FEELINGS</p>
+          <h1>Say it with<br><em>something</em><br>in bloom.</h1>
+          <p class="hero-description">A thoughtful bouquet for the people and moments that matter. Choose a flower by what it means, then make it yours.</p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#flowers">Explore the flowers <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#order">Build an order <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-note"><span class="note-sparkle">✳</span><span>Handmade with care<br><strong>for your kind of moment</strong></span></div>
+        </div>
+        <div class="hero-art">
+          <div class="hero-image-frame"><img src="images/rose-cone-bouquets.jpg" alt="Hand-wrapped red rose cone bouquets with pearl details"></div>
+          <div class="hero-sticker"><span>made to</span><strong>mean<br>more</strong><span>✿</span></div>
+          <span class="hero-side-note">FLOWERS WITH A LITTLE MORE FEELING</span>
+        </div>
+        <div class="hero-bottom"><span>01 / A flower for every feeling</span><span>MADE FOR GIVING &nbsp; ✳ &nbsp; MADE WITH HEART</span></div>
+      </section>
+
+      <section class="intro section-wrap" id="flowers">
+        <div class="section-heading">
+          <p class="eyebrow">THE FLOWER GUIDE</p>
+          <h2>Pick the feeling.<br><em>We’ll find the flower.</em></h2>
+        </div>
+        <p class="intro-text">Not every occasion calls for the same bloom. Explore eight flower styles, what they say, and who they’re lovely to give to.</p>
+      </section>
+
+      <section class="flower-grid section-wrap" aria-label="Flower bouquet collection" id="flower-grid"></section>
+
+      <section class="price-section" id="prices">
+        <div class="section-wrap price-inner">
+          <div class="price-heading">
+            <div><p class="eyebrow">THE BOUQUET MENU</p><h2>Find your<br><em>bouquet size.</em></h2></div>
+            <p>Choose any of our flower styles in six bouquet sizes. All prices are in Indian rupees (₹).</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th scope="col">Flower</th><th scope="col">Mini</th><th scope="col">Medium Classic</th><th scope="col">Large Full</th><th scope="col">Luxe</th><th scope="col">Premium Statement</th><th scope="col">Grand</th></tr></thead>
+              <tbody id="price-rows"></tbody>
+            </table>
+          </div>
+          <p class="price-note"><span aria-hidden="true">✳</span> Prices are transcribed from the handwritten catalog. Bouquet counts and details can be confirmed when you order.</p>
+        </div>
+      </section>
+
+      <section class="gallery-section section-wrap" id="keepsakes">
+        <div class="gallery-heading">
+          <div><p class="eyebrow">A LITTLE BLOOM TO KEEP</p><h2>Small bouquets,<br><em>lasting smiles.</em></h2></div>
+          <p>Take the bouquet feeling with you. Our bouquet keychains make tiny, thoughtful keepsakes. Ask us for current colors and pricing.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-card gallery-card-large"><img src="images/rose-bouquet-keychain.jpg" alt="Handmade pink satin rose bouquet keychain with a ribbon bow"><figcaption><span>01</span><strong>Rose Bouquet Keychain</strong></figcaption></figure>
+          <figure class="gallery-card"><img src="images/mini-bouquet-keychains.jpg" alt="Colorful miniature flower bouquet keychains"><figcaption><span>02</span><strong>Mini Bouquet Keychains</strong></figcaption></figure>
+        </div>
+        <p class="keychain-note">Bouquet keychain prices aren’t listed in the catalog yet. <a href="#order">Ask us about a keepsake ↗</a></p>
+      </section>
+
+      <section class="order-section" id="order">
+        <div class="section-wrap order-inner">
+          <div class="order-copy"><p class="eyebrow">MAKE IT YOURS</p><h2>Your flowers,<br><em>your meaning.</em></h2><p>Choose a flower and bouquet size to make an order note. Copy it and send it through your preferred messaging app so we can confirm colors and details.</p><div class="order-aside"><span>✿</span><p>Colors shown are popular ideas, not a live stock list. We’ll confirm what’s available with you.</p></div></div>
+          <form class="order-card" id="order-form">
+            <p class="order-card-label">YOUR BOUQUET NOTE <span>✳</span></p>
+            <label for="order-flower">Choose a flower</label><select id="order-flower" name="flower"></select>
+            <label for="order-size">Choose a size</label><select id="order-size" name="size"></select>
+            <label for="order-color">Color idea <span class="optional">(optional)</span></label><input id="order-color" name="color" placeholder="e.g. soft pink, ivory, sunshine yellow">
+            <div class="order-total"><span>Catalog price</span><strong id="order-price">₹299</strong></div>
+            <button class="button button-dark copy-button" type="submit">Copy my order note <span aria-hidden="true">↗</span></button>
+            <p class="copy-status" id="copy-status" role="status" aria-live="polite">No payment is taken here. We’ll confirm your order details directly.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><a class="wordmark" href="#home"><span class="wordmark-flower">✿</span><span>Sahiraé <small>by Sana</small></span></a><p>For every feeling worth sharing. <span>✳</span></p><a href="#home">BACK TO TOP ↑</a></footer>
+  </body>
+</html>
